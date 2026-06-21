@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aziz Bazaar — Authentic Moroccan Treasures, London</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,900;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --terracotta: #B5482B;
+    --terracotta-dark: #8C3620;
+    --saffron: #D4A017;
+    --saffron-light: #E8C158;
+    --teal: #1B4D4A;
+    --teal-dark: #123330;
+    --plaster: #F2E8D8;
+    --plaster-light: #FAF5EA;
+    --ink: #2A1F1A;
+    --ink-soft: #4A3B30;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--plaster-light);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  img { max-width: 100%; display: block; }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- ZELLIGE TILE DIVIDER ---------- */
+  .tile-strip {
+    height: 14px;
+    width: 100%;
+    background-image:
+      repeating-linear-gradient(45deg, var(--terracotta) 0, var(--terracotta) 7px, transparent 7px, transparent 14px),
+      repeating-linear-gradient(-45deg, var(--teal) 0, var(--teal) 7px, transparent 7px, transparent 14px);
+    background-blend-mode: multiply;
+    background-color: var(--saffron);
+  }
+
+  /* ---------- HEADER ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--plaster-light);
+    border-bottom: 1px solid rgba(42,31,26,0.08);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--terracotta-dark);
+  }
+
+  .brand .mark {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .nav-links a {
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--saffron);
+    transition: width 0.25s ease;
+  }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-call {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--terracotta);
+    color: var(--plaster-light);
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .nav-call:hover { background: var(--terracotta-dark); }
+
+  .mobile-toggle { display: none; }
+
+  /* ---------- HERO with ARCH ---------- */
+  .hero {
+    position: relative;
+    background: linear-gradient(180deg, var(--teal-dark) 0%, var(--teal) 100%);
+    padding: 80px 32px 0;
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .hero-eyebrow {
+    color: var(--saffron-light);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.82rem;
+    margin-bottom: 18px;
+    display: inline-block;
+  }
+
+  .hero h1 {
+    color: var(--plaster-light);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.12;
+    margin-bottom: 22px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--saffron-light);
+  }
+
+  .hero p {
+    color: rgba(242,232,216,0.85);
+    font-size: 1.1rem;
+    max-width: 480px;
+    margin-bottom: 32px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--saffron);
+    color: var(--ink);
+    padding: 15px 30px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 0.98rem;
+    transition: transform 0.2s, background 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--saffron-light); transform: translateY(-2px); }
+
+  .btn-outline {
+    border: 1.5px solid rgba(242,232,216,0.5);
+    color: var(--plaster-light);
+    padding: 15px 30px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 0.98rem;
+    transition: border-color 0.2s, background 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: rgba(242,232,216,0.1); border-color: var(--saffron-light); }
+
+  /* The arch */
+  .arch-frame {
+    position: relative;
+    height: 460px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .arch-shape {
+    width: 100%;
+    max-width: 340px;
+    height: 100%;
+    background: var(--terracotta);
+    border-radius: 170px 170px 8px 8px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+  }
+
+  .arch-shape::before {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 2px solid rgba(242,232,216,0.4);
+    border-radius: 156px 156px 4px 4px;
+    z-index: 2;
+  }
+
+  .arch-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 75% 50%;
+    filter: saturate(1.08) contrast(1.03);
+  }
+
+  .arch-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(27,77,74,0.35) 0%, rgba(42,31,26,0.15) 55%, rgba(42,31,26,0.55) 100%);
+    z-index: 1;
+  }
+
+  .hero-bottom-fade {
+    height: 60px;
+  }
+
+  /* ---------- TRUST BAR ---------- */
+  .trust-bar {
+    background: var(--ink);
+    padding: 16px 32px;
+  }
+  .trust-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    color: var(--plaster);
+    font-size: 0.88rem;
+    font-weight: 500;
+  }
+  .trust-inner span { opacity: 0.9; }
+  .trust-inner b { color: var(--saffron-light); }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 88px 0; }
+
+  .section-head {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 56px;
+  }
+
+  .eyebrow {
+    color: var(--terracotta);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .section-head h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    margin-bottom: 14px;
+  }
+
+  .section-head p {
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+  }
+
+  /* Souk alleys / categories */
+  .alleys {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .alley-card {
+    background: var(--plaster);
+    border-radius: 6px;
+    padding: 36px 28px;
+    border: 1px solid rgba(42,31,26,0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+  }
+
+  .alley-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 34px rgba(42,31,26,0.12);
+  }
+
+  .alley-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    color: var(--saffron);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .alley-icon {
+    font-size: 2.4rem;
+    margin-bottom: 16px;
+  }
+
+  .alley-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .alley-card p {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+
+  /* ---------- ABOUT / STORY ---------- */
+  .about {
+    background: var(--teal);
+    color: var(--plaster-light);
+  }
+
+  .about-inner {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .about-visual {
+    background: var(--teal-dark);
+    border-radius: 8px;
+    aspect-ratio: 4/5;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 60% 50%;
+  }
+
+  .about-visual .photo-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(18,51,48,0.55) 0%, transparent 45%);
+  }
+
+  .about-text .eyebrow { color: var(--saffron-light); }
+  .about-text h2 { color: var(--plaster-light); margin-bottom: 20px; }
+  .about-text p { color: rgba(242,232,216,0.85); margin-bottom: 16px; font-size: 1.02rem; }
+
+  .about-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 28px;
+  }
+  .about-stats div { }
+  .about-stats b {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--saffron-light);
+    display: block;
+  }
+  .about-stats span {
+    font-size: 0.85rem;
+    color: rgba(242,232,216,0.7);
+  }
+
+  /* ---------- VISIT / SHOP INFO ---------- */
+  .visit {
+    background: var(--plaster);
+  }
+
+  .visit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0;
+    background: var(--plaster-light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(42,31,26,0.08);
+  }
+
+  .visit-col {
+    padding: 40px 32px;
+    border-right: 1px solid rgba(42,31,26,0.08);
+  }
+  .visit-col:last-child { border-right: none; }
+
+  .visit-col .icon {
+    font-size: 1.8rem;
+    margin-bottom: 14px;
+  }
+
+  .visit-col h3 {
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+  }
+
+  .visit-col p, .visit-col a {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    display: block;
+  }
+
+  .visit-col a.phone-link {
+    color: var(--terracotta);
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+  .visit-col a.phone-link:hover { text-decoration: underline; }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    padding: 4px 0;
+    color: var(--ink-soft);
+  }
+  .hours-row b { color: var(--ink); }
+
+  /* ---------- GALLERY STRIP ---------- */
+  .gallery {
+    background: var(--ink);
+  }
+  .gallery .section-head h2 { color: var(--plaster-light); }
+  .gallery .section-head p { color: rgba(242,232,216,0.65); }
+  .gallery .eyebrow { color: var(--saffron-light); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .gallery-tile {
+    aspect-ratio: 4/3;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+  .gallery-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .gallery-tile:hover img { transform: scale(1.05); }
+  .gallery-cap {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 18px 16px 14px;
+    background: linear-gradient(180deg, transparent, rgba(20,15,12,0.85));
+    color: var(--plaster-light);
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials {
+    background: var(--plaster-light);
+  }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .testi-card {
+    background: var(--plaster);
+    border-radius: 6px;
+    padding: 30px 26px;
+    border-left: 4px solid var(--saffron);
+  }
+  .testi-stars { color: var(--saffron); margin-bottom: 14px; font-size: 1rem; }
+  .testi-card p {
+    font-size: 0.96rem;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+  .testi-name { font-weight: 700; font-size: 0.92rem; }
+  .testi-loc { font-size: 0.82rem; color: var(--ink-soft); }
+
+  /* ---------- CONTACT / CTA ---------- */
+  .contact-cta {
+    background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+    color: var(--plaster-light);
+    text-align: center;
+  }
+  .contact-cta h2 { color: var(--plaster-light); font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin-bottom: 16px; }
+  .contact-cta p { color: rgba(242,232,216,0.9); max-width: 540px; margin: 0 auto 36px; font-size: 1.05rem; }
+
+  .contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .contact-pill {
+    background: rgba(242,232,216,0.12);
+    border: 1.5px solid rgba(242,232,216,0.35);
+    border-radius: 50px;
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .contact-pill:hover { background: rgba(242,232,216,0.22); border-color: var(--saffron-light); }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--ink);
+    color: rgba(242,232,216,0.7);
+    padding: 56px 0 28px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--plaster-light);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-grid p { font-size: 0.9rem; line-height: 1.7; }
+
+  .footer-col h4 {
+    color: var(--saffron-light);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  .footer-col a, .footer-col p {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    color: rgba(242,232,216,0.7);
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--saffron-light); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(242,232,216,0.12);
+    padding-top: 24px;
+    text-align: center;
+    font-size: 0.82rem;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .arch-frame { height: 320px; order: -1; }
+    .alleys { grid-template-columns: 1fr; }
+    .about-inner { grid-template-columns: 1fr; }
+    .visit-grid { grid-template-columns: 1fr; }
+    .visit-col { border-right: none; border-bottom: 1px solid rgba(42,31,26,0.08); }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .contact-methods { flex-direction: column; align-items: stretch; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--saffron);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 40 40" fill="none">
+        <path d="M20 2 C8 2 2 14 2 22 C2 32 10 38 20 38 C30 38 38 32 38 22 C38 14 32 2 20 2 Z" fill="#B5482B"/>
+        <path d="M20 6 C11 6 6 15 6 22 C6 30 12 34 20 34 C28 34 34 30 34 22 C34 15 29 6 20 6 Z" fill="#1B4D4A"/>
+        <circle cx="20" cy="20" r="6" fill="#D4A017"/>
+      </svg>
+      Aziz Bazaar
+    </div>
+    <nav class="nav-links">
+      <a href="#collections">Collections</a>
+      <a href="#about">Our Story</a>
+      <a href="#visit">Visit Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="tel:07459812721" class="nav-call">📞 07459 812721</a>
+  </div>
+</header>
+
+<div class="tile-strip"></div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-eyebrow">Established in London</span>
+      <h1>Bring home the <em>souks of Morocco</em>, doorstep by doorstep.</h1>
+      <p>Handwoven rugs, hammered brass lanterns, Berber leather, and hand-glazed ceramics — sourced directly from artisan workshops across Morocco, sold with honesty in London.</p>
+      <div class="hero-ctas">
+        <a href="tel:07459812721" class="btn-primary">Call 07459 812721</a>
+        <a href="#visit" class="btn-outline">623 Harrow Road →</a>
+      </div>
+    </div>
+    <div class="arch-frame">
+      <div class="arch-shape">
+        <img class="arch-photo" src="images/shop-front-2.jpeg" alt="Aziz Bazaar shopfront on Harrow Road, London, with rugs, bags and decor on display">
+        <div class="arch-shade"></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bottom-fade"></div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-inner">
+    <span>🪔 <b>Direct from Moroccan artisans</b></span>
+    <span>🚚 <b>UK-wide delivery</b></span>
+    <span>🤝 <b>Family run since day one</b></span>
+    <span>✅ <b>Fair, transparent pricing</b></span>
+  </div>
+</div>
+
+<section id="collections">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Walk the Souk</span>
+      <h2>Four alleys, one bazaar</h2>
+      <p>Every corner of Aziz Bazaar is stocked the way a real Marrakech souk is laid out — by craft, not by category.</p>
+    </div>
+    <div class="alleys">
+      <div class="alley-card">
+        <span class="alley-num">Alley One</span>
+        <div class="alley-icon">🧶</div>
+        <h3>Rugs & Textiles</h3>
+        <p>Hand-knotted Beni Ourain, kilims, and Boucherouite rugs woven by Berber cooperatives in the Atlas Mountains.</p>
+      </div>
+      <div class="alley-card">
+        <span class="alley-num">Alley Two</span>
+        <div class="alley-icon">🏮</div>
+        <h3>Lanterns & Lighting</h3>
+        <p>Hammered brass and pierced metal lanterns, hand-cut to throw the same warm light you'd find in a Fez medina.</p>
+      </div>
+      <div class="alley-card">
+        <span class="alley-num">Alley Three</span>
+        <div class="alley-icon">👜</div>
+        <h3>Leather Goods</h3>
+        <p>Vegetable-tanned bags, poufs, and babouche slippers from the tanneries of Fez, finished by hand.</p>
+      </div>
+      <div class="alley-card">
+        <span class="alley-num">Alley Four</span>
+        <div class="alley-icon">🍵</div>
+        <h3>Ceramics & Tea</h3>
+        <p>Hand-painted tagines, Safi pottery, and engraved brass tea sets — built for daily use, not just display.</p>
+      </div>
+      <div class="alley-card">
+        <span class="alley-num">Alley Five</span>
+        <div class="alley-icon">🕌</div>
+        <h3>Home & Decor</h3>
+        <p>Zellige-inspired mirrors, carved wooden screens, and mosaic tables to bring riad style into any room.</p>
+      </div>
+      <div class="alley-card">
+        <span class="alley-num">Alley Six</span>
+        <div class="alley-icon">🎁</div>
+        <h3>Gifts & Spices</h3>
+        <p>Argan oil, ras el hanout, and small treasures perfect for gifting — wrapped the bazaar way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tile-strip"></div>
+
+<section class="about" id="about">
+  <div class="wrap about-inner">
+    <div class="about-visual">
+      <img src="images/shop-front-3.jpeg" alt="Outside Aziz Bazaar, 623 Harrow Road, London">
+      <div class="photo-shade"></div>
+    </div>
+    <div class="about-text">
+      <span class="eyebrow">Our Story</span>
+      <h2>Sourced with relationships, not invoices</h2>
+      <p>Aziz Bazaar started with one simple idea: bring the real souk experience to London, without the markup of middlemen. We work directly with family workshops across Morocco — the same weavers, metalworkers, and potters whose craft has been passed down for generations.</p>
+      <p>Find us on Harrow Road, right next to Casbah Café — step inside and we're happy to tell you the story behind every piece on the shelf.</p>
+      <div class="about-stats">
+        <div><b>100%</b><span>Direct from artisans</span></div>
+        <div><b>1-1</b><span>Personal service, every visit</span></div>
+        <div><b>UK</b><span>Wide delivery available</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Inside the Bazaar</span>
+      <h2>A glimpse of the shop floor</h2>
+      <p>Our shop on Harrow Road — leather bags, woven baskets, rugs and art, the way a real bazaar should look.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-tile">
+        <img src="images/shop-front-1.jpeg" alt="Leather bags, baskets and rugs displayed outside Aziz Bazaar on Harrow Road">
+        <div class="gallery-cap">Leather bags & woven baskets</div>
+      </div>
+      <div class="gallery-tile">
+        <img src="images/shop-front-3.jpeg" alt="Storefront display of bags, clothing and textiles at Aziz Bazaar">
+        <div class="gallery-cap">Street display, Harrow Road</div>
+      </div>
+      <div class="gallery-tile">
+        <img src="images/shop-front-2.jpeg" alt="Aziz Bazaar storefront with rugs, baskets and framed artwork">
+        <div class="gallery-cap">Rugs, art & home decor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Visit or Call</span>
+      <h2>Come and see the bazaar for yourself</h2>
+      <p>Browse in person, or call ahead and we'll have pieces ready for you to see.</p>
+    </div>
+    <div class="visit-grid">
+      <div class="visit-col">
+        <div class="icon">📍</div>
+        <h3>Find Us</h3>
+        <p style="font-weight:700; color:var(--ink);">623 Harrow Road<br>London</p>
+        <p style="margin-top:8px;">Next to Casbah Café — look for the rugs and baskets out front.</p>
+      </div>
+      <div class="visit-col">
+        <div class="icon">📞</div>
+        <h3>Call Us</h3>
+        <a class="phone-link" href="tel:07459812721">Mobile: 07459 812721</a>
+        <a class="phone-link" href="tel:02089606961">Landline: 020 8960 6961</a>
+        <p>Lines open during shop hours — see opening times alongside.</p>
+      </div>
+      <div class="visit-col">
+        <div class="icon">✉️</div>
+        <h3>Email Us</h3>
+        <a href="mailto:azizbazaar@gmail.com" style="color:var(--terracotta); font-weight:700;">azizbazaar@gmail.com</a>
+        <p style="margin-top:8px;">For enquiries, custom orders, or delivery questions — we reply within a day.</p>
+      </div>
+      <div class="visit-col">
+        <div class="icon">🕒</div>
+        <h3>Opening Hours</h3>
+        <div class="hours-row"><span>Mon – Sat</span><b>9:30am – 6:00pm</b></div>
+        <div class="hours-row"><span>Sunday</span><b>11:00am – 4:00pm</b></div>
+        <p style="margin-top:10px; font-size:0.82rem;">Hours may vary on public holidays — call ahead to confirm.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">From Our Customers</span>
+      <h2>What people say after visiting</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"The rug we bought looks even better in our living room than it did in the shop. Aziz spent twenty minutes telling us about how it was made."</p>
+        <div class="testi-name">Sarah M.</div>
+        <div class="testi-loc">London</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"Ordered a lantern over the phone and it arrived perfectly packed within a few days. Better quality than anything I'd seen in big retail shops."</p>
+        <div class="testi-name">David R.</div>
+        <div class="testi-loc">Essex</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>"A proper bazaar experience — friendly, no pressure, and genuinely beautiful pieces. The tagine pot we bought is now used every weekend."</p>
+        <div class="testi-name">Fatima K.</div>
+        <div class="testi-loc">London</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-cta" id="contact">
+  <div class="wrap">
+    <h2>Ready to start browsing?</h2>
+    <p>Whether you're after one statement rug or you're furnishing a whole room, call, email, or drop by — we're happy to help.</p>
+    <div class="contact-methods">
+      <a href="tel:07459812721" class="contact-pill">📱 07459 812721 (Mobile)</a>
+      <a href="tel:02089606961" class="contact-pill">☎️ 020 8960 6961 (Landline)</a>
+      <a href="mailto:azizbazaar@gmail.com" class="contact-pill">✉️ azizbazaar@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+            <path d="M20 2 C8 2 2 14 2 22 C2 32 10 38 20 38 C30 38 38 32 38 22 C38 14 32 2 20 2 Z" fill="#B5482B"/>
+            <path d="M20 6 C11 6 6 15 6 22 C6 30 12 34 20 34 C28 34 34 30 34 22 C34 15 29 6 20 6 Z" fill="#1B4D4A"/>
+            <circle cx="20" cy="20" r="6" fill="#D4A017"/>
+          </svg>
+          Aziz Bazaar
+        </div>
+        <p>Authentic Moroccan rugs, lanterns, leather, and ceramics — sourced direct from artisan workshops and brought to London.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="#collections">Rugs & Textiles</a>
+        <a href="#collections">Lanterns & Lighting</a>
+        <a href="#collections">Leather Goods</a>
+        <a href="#collections">Ceramics & Tea</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p style="color:rgba(242,232,216,0.7); margin-bottom:10px;">623 Harrow Road, London</p>
+        <a href="tel:07459812721">Mobile: 07459 812721</a>
+        <a href="tel:02089606961">Landline: 020 8960 6961</a>
+        <a href="mailto:azizbazaar@gmail.com">azizbazaar@gmail.com</a>
+      </div>
+      <div class="footer-col">
+        <h4>Hours</h4>
+        <p>Mon–Sat: 9:30am–6pm</p>
+        <p>Sunday: 11am–4pm</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Aziz Bazaar. All rights reserved. Crafted with care, sourced with honesty.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
